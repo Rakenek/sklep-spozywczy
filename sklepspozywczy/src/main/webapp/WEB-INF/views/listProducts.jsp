@@ -42,9 +42,10 @@
 						class="table table-striped table-borderd">
 						<thead>
 							<tr>
+								<th></th>
 								<th>Nazwa</th>
 								<th>Marka</th>
-								<th>Cena jednostkowa</th>
+								<th>Cena jedn.</th>
 								<th>Jednostka</th>
 								<th>Ilość</th>
 								<th></th>
@@ -52,9 +53,10 @@
 						</thead>
 						<tfoot>
 							<tr>
+								<th></th>
 								<th>Nazwa</th>
 								<th>Marka</th>
-								<th>Cena jednostkowa</th>
+								<th>Cena jedn.</th>
 								<th>Jednostka</th>
 								<th>Ilość</th>
 								<th></th>

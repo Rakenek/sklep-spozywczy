@@ -41,7 +41,13 @@ $(function() {
 				dataSrc:''
 			},
 			columns:[
-				
+				{
+					data:'code',
+					mRender:function(data,type,row)
+					{
+						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="dataTableImg"/>';
+					}
+				},
 				{
 					data:'name'
 					
@@ -68,9 +74,10 @@ $(function() {
 				},
 				{
 					data:'id',
+					bSortable:false,
 					mRender:function(data,type,row){
 						var str='';
-						str+='<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-primary"><i class="icon-eye"></i></a>';
+						str+='<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-primary"><i class="icon-eye"></i></a>&#160;';
 						str+='<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-success"><i class="icon-cart-plus"></i></a>';
 						
 						return str;
