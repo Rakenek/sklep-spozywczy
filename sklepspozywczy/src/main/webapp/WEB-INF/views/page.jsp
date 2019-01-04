@@ -20,13 +20,17 @@
 <title>Sklep spożywczy - ${title}</title>
 
 <script>
-	window.menu = '${title}'
+	window.menu = '${title}';
+	window.contextRoot='${contextRoot}'
 </script>
 
 <!-- Bootstrap  -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
 <link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="${css}/fontello.css" rel="stylesheet">
+
+
 
 <!-- CSS -->
 <link href="${css}/myapp.css" rel="stylesheet">

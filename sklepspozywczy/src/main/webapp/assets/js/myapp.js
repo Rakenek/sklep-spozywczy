@@ -22,21 +22,62 @@ $(function() {
 		break;
 	}
 
-	var products = [
-
-	[ '1', 'ABC' ], [ '2', 'SGD' ], [ '3', 'HFD' ], [ '4', 'HEC' ],
-			[ '5', 'YTI' ], [ '6', 'BDG' ], [ '7', 'KHG' ], [ '8', 'GRS' ]
-
-	];
-
 	var $table = $('#productListTable');
 
 	if ($table.length) {
 
+		var jsonUrl = '';
+		if (window.categoryId == '') {
+			jsonUrl = window.contextRoot + '/json/data/all/products';
+		} else {
+			jsonUrl = window.contextRoot + '/json/data/category/'+window.categoryId+'/products';
+		}
+
 		$table.DataTable({
-			lengthMenu:[[3,5,10,-1],['3','5','10','Wszystkie']],
-			pageLength:5,
-			data : products
+			lengthMenu : [ [ 3, 5, 10, -1 ], [ '3', '5', '10', 'Wszystkie' ] ],
+			pageLength : 5,
+			ajax:{
+				url:jsonUrl,
+				dataSrc:''
+			},
+			columns:[
+				
+				{
+					data:'name'
+					
+				},
+				{
+					data:'brand'
+					
+				},
+				{
+					data:'unitPrice',
+					mRender:function(data,type,row)
+					{
+						return data+' zł'
+					}
+					
+				},
+				{
+					data:'unit'
+					
+				},
+				{
+					data:'quantity'
+					
+				},
+				{
+					data:'id',
+					mRender:function(data,type,row){
+						var str='';
+						str+='<a href="'+window.contextRoot+'/show/'+data+'/product" class="btn btn-primary"><i class="icon-eye"></i></a>';
+						str+='<a href="'+window.contextRoot+'/cart/add/'+data+'/product" class="btn btn-success"><i class="icon-cart-plus"></i></a>';
+						
+						return str;
+					}
+				}
+				
+			]
 		});
 	}
 }
