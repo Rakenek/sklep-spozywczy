@@ -1,3 +1,4 @@
+drop all objects;
 CREATE TABLE category (
 	id IDENTITY,
 	name VARCHAR(50),
@@ -26,7 +27,7 @@ CREATE TABLE product (
 	code VARCHAR(20),
 	name VARCHAR(50),
 	brand VARCHAR(50),
-	description VARCHAR(255),
+	unit VARCHAR(255),
 	unit_price DECIMAL(10,2),
 	quantity INT,
 	is_active BOOLEAN,
@@ -129,18 +130,18 @@ INSERT INTO user_detail
 VALUES ('Zenon', 'Martyniuk', 'USER', true, '$2a$10$Ljm3tOKzDlTMiuXRVdRa7OAfEk2ortlnQ/AM0sf728QY9LizL8Kl2', 'zm@gmail.com', '7777777777');
 
 -- adding five products
-INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDABC123DEFX', 'jablka', 'pola', 'jablka z polskich sadow!', 2.5, 100, true, 1, 2, 0, 0 );
-INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDDEF123DEFX', 'gruszka', 'zielony sad', 'gruszki z firmy zielony sad!', 3.5, 100, true, 1, 2, 0, 0 );
-INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDPQR123WGTX', 'marchew', 'warzywko', 'marchew ekologiczna!', 10, 100, true, 2, 2, 0, 0 );
-INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDMNO123PQRX', 'pietruszka', 'warzywko', 'pietruszka ekologiczna!', 7, 100, true, 2, 2, 0, 0 );
-INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDABCXYZDEFX', 'chleb', 'piekarnia pod telegrafem', 'chrupiacy chleb z piekarni pod telegrafem!', 4, 100, true, 3, 3, 0, 0 );
-INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDABCXYZDEFZ', 'mini-pizza', 'piekarnia pod telegrafem', 'chrupiaca pizza z piekarni pod telegrafem!', 3, 100, true, 3, 3, 0, 0 );
+INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDABC123DEFX', 'jablka', 'pola', 'kg', 2.5, 100, true, 1, 2, 0, 0 );
+INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDDEF123DEFX', 'gruszka', 'zielony sad', 'kg', 3.5, 100, true, 1, 2, 0, 0 );
+INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDPQR123WGTX', 'marchew', 'warzywko', 'kg', 10, 100, true, 2, 2, 0, 0 );
+INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDMNO123PQRX', 'pietruszka', 'warzywko', 'kg', 7, 100, true, 2, 2, 0, 0 );
+INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDABCXYZDEFX', 'chleb', 'piekarnia pod telegrafem', 'szt', 4, 100, true, 3, 3, 0, 0 );
+INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDABCXYZDEFZ', 'mini-pizza', 'piekarnia pod telegrafem', 'szt', 3, 100, true, 3, 3, 0, 0 );
 -- adding a supplier correspondece address
 INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, is_billing, is_shipping) 
 VALUES (4, 'Daleszyce', 'Brzechow', '62B', 'Swietokrzyskie', 'Polska', '26-021', true, false );

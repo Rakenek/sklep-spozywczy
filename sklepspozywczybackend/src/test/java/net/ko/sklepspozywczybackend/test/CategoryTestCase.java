@@ -32,36 +32,22 @@ public class CategoryTestCase {
 		
 		//dodanie do bd
 		category = new Category();
-		category.setName("Owoce");
-		category.setDescription("Owoce z polskich sadów");
-		category.setImageURL("cat1.png");
+		category.setName("Napoje");
+		category.setDescription("Napoje gazowane");
+		category.setImageURL("cat4.png");
 		
-		assertEquals("udalo sie dodac kategorie do tabeli", true,categoryDAO.add(category));
-		
-		category = new Category();
-		category.setName("Warzywa");
-		category.setDescription("Warzywa z polskich ogrodów");
-		category.setImageURL("cat2.png");
-		
-		assertEquals("udalo sie dodac kategorie do tabeli", true,categoryDAO.add(category));
-		
-		category = new Category();
-		category.setName("Pieczywo");
-		category.setDescription("Świeże pieczywo");
-		category.setImageURL("cat3.png");
-		
-		assertEquals("udalo sie dodac kategorie do tabeli", true,categoryDAO.add(category));
+		assertEquals("nie udalo sie dodac kategorie do tabeli", true,categoryDAO.add(category));
 		
 		//pobranie i aktualizacja kategorii
 		category=categoryDAO.get(3);
-		category.setName("Napoje");
-		assertEquals("udalo sie zaktualizowac kategorie", true,categoryDAO.update(category));
+		category.setName("Bułki");
+		assertEquals("nie udalo sie zaktualizowac kategorie", true,categoryDAO.update(category));
 		
 		//dezaktywowanie kategorii
-		assertEquals("udalo sie dezaktywowac kategorie", true,categoryDAO.delete(category));
+		assertEquals("nie udalo sie dezaktywowac kategorie", true,categoryDAO.delete(category));
 		
 		//lista kategorii aktywnych
-			assertEquals("udalo sie pobrac liste kategorii", 2,categoryDAO.list().size());
+			assertEquals("nie udalo sie pobrac liste kategorii", 3,categoryDAO.list().size());
 
 	}
 
