@@ -3,60 +3,82 @@ package net.ko.sklepspozywczybackend.daoimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.ko.sklepspozywczybackend.dao.CategoryDAO;
 import net.ko.sklepspozywczybackend.dto.Category;
 
 @Repository("categoryDAO")
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO {
-	
-	private static List<Category> categories=new ArrayList<>();
-	
-	static {
 
-		Category category=new Category();
-		category.setId(1);
-		category.setName("telewizja");
-		category.setDescription("This is some description tv");
-		category.setImageURL("cat1.png");
-		categories.add(category);
-		
-		category=new Category();
-		category.setId(2);
-		category.setName("telefon");
-		category.setDescription("This is some description telefon");
-		category.setImageURL("cat2.png");
-		categories.add(category);
-		
-		category=new Category();
-		category.setId(3);
-		category.setName("klawiatura");
-		category.setDescription("This is some description klawiatura");
-		category.setImageURL("cat3.png");
-		categories.add(category);
-		
-		
-		
-	}
-	
-	
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	private static List<Category> categories = new ArrayList<>();
+
 	@Override
-	public List<Category> list()
-	{
-		return categories;
+	public List<Category> list() {
+		
+		String selectActiveCategory="FROM Category WHERE active=:active";
+		
+		Query query=sessionFactory.getCurrentSession().createQuery(selectActiveCategory);
+		query.setParameter("active", true);
+		
+		return query.getResultList();
 	}
 
-
+	// pobieranie pojedynczej kategorii po id
 	@Override
 	public Category get(int id) {
-		
-		for(Category cat:categories)
-		{
-			if(cat.getId()==id)
-			return cat;
+
+		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
+	}
+
+	@Override
+	public boolean add(Category category) {
+		try {
+
+			sessionFactory.getCurrentSession().persist(category);
+
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
 		}
-		return null;		
+
+	}
+
+	//aktualizacja pojedynczej kategorii
+	@Override
+	public boolean update(Category category) {
+		try {
+
+			sessionFactory.getCurrentSession().update(category);
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
+
+	//dezaktywowanie kategorii
+	@Override
+	public boolean delete(Category category) {
+		
+		category.setActive(false);
+		try {
+
+			sessionFactory.getCurrentSession().update(category);
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
 	}
 
 }
