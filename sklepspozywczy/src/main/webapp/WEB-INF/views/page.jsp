@@ -21,7 +21,7 @@
 
 <script>
 	window.menu = '${title}';
-	window.contextRoot='${contextRoot}'
+	window.contextRoot = '${contextRoot}'
 </script>
 
 <!-- Bootstrap  -->
@@ -60,12 +60,17 @@
 			<c:if test="${userClickContact==true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
-			
+
 			<!-- Strona z kategoriami -->
 			<c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
 				<%@include file="listProducts.jsp"%>
 			</c:if>
 			
+				<!-- Strona z pojedynczym produktem -->
+			<c:if test="${userClickShowProduct==true}">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>
+
 		</div>
 
 		<!-- Stopka -->
@@ -77,7 +82,7 @@
 		<script src="${js}/jquery.dataTables.js"></script>
 		<script src="${js}/dataTables.bootstrap4.js"></script>
 		<script src="${js}/myapp.js"></script>
-		
+
 
 	</div>
 
