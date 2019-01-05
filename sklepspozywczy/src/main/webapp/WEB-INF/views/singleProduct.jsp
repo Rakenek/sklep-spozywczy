@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class="col-xs-12 col-sm-8">
+		<div class="col-xs-12 col-sm-9">
 			<h3>${product.name}</h3>
 			<hr />
 			<p>${product.brand}</p>

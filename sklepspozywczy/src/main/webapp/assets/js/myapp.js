@@ -21,7 +21,7 @@ $(function() {
 		$('#a_' + menu).addClass('sidebaractive');
 		break;
 	}
-
+	// tabela skrypt
 	var $table = $('#productListTable');
 
 	if ($table.length) {
