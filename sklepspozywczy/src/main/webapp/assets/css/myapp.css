@@ -55,6 +55,25 @@ body {
 	color:#ff0000;
 }
 
+.panel-heading
+{
+	padding:10px;
+	background-color:#4E5D6C;
+	border-style:solid;
+	border-width:5px;
+}
 
+.panel-body
+{
+	padding:10px;
+	background-color:#EBEBEB;
+	border-style:solid;
+	border-width:5px;
+}
 
-
+.mylabel
+{
+	color:#4E5D6C;
+	font-weight:600;
+	text-align:right;
+}

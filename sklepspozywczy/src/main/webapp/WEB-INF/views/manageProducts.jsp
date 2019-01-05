@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
-	<div class="row">
-		<div class="col-md-offset-2 col-md-8">
+	<div class="row justify-content-center">
+		<div class="col-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4>Zarządzanie produktami</h4>
@@ -10,37 +11,97 @@
 
 				<div class="panel-body">
 
-					<form class="form-horizontal">
-					
-					
-						<div class="form-group">
-							<label class="control-label col-md-4" for="name">Wpisz nazwę produktu</label>
-							<div class="col-md-8">
-								<input type="text" name="name" id="name" placeholder="Nazwa produktu" class="form-control" />
+					<sf:form class="form-horizontal" modelAttribute="product">
+
+
+						<div class="form-group row">
+							<label class="mylabel col-4 " for="name">Nazwa produktu :
+							</label>
+							<div class="col-8">
+								<sf:input type="text" path="name" id="name"
+									placeholder="Nazwa produktu" class="form-control" />
 								<em class="help-block">Proszę wpisać nazwę produktu</em>
 
 							</div>
 						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-md-4" for="brand">Wpisz markę produktu</label>
-							<div class="col-md-8">
-								<input type="text" name="brand" id="brand" placeholder="Marka" class="form-control" />
+
+						<div class="form-group row ">
+							<label class="mylabel col-4" for="brand">Marka produktu :
+							</label>
+							<div class="col-8">
+								<sf:input type="text" path="brand" id="brand"
+									placeholder="Marka" class="form-control" />
 								<em class="help-block">Proszę wpisać markę produktu</em>
 
 							</div>
 						</div>
-						
-						
-							<div class="form-group">
-							<div class="col-md-offset-4 col-md-8">
-								<input type="submit" name="submit" id="submit" value="Wyślij" class="btn btn-primary" />
+
+						<div class="form-group row ">
+							<label class="mylabel col-4" for="unit">Jednostka
+								rozliczeniowa : </label>
+							<div class="col-8">
+								<sf:input type="text" path="unit" id="unit"
+									placeholder="Jednostka" class="form-control" />
+								<em class="help-block">Proszę wpisać jednostkę</em>
 
 							</div>
 						</div>
-						
-						
-					</form>
+
+						<div class="form-group row ">
+							<label class="mylabel col-4" for="unitPrice">Cena
+								jednostkowa : </label>
+							<div class="col-8">
+								<sf:input type="number" path="unitPrice" id="unitPrice"
+									placeholder="Cena jednostkowa" class="form-control" />
+								<em class="help-block">Proszę wpisać cene jednostkową</em>
+
+							</div>
+						</div>
+
+						<div class="form-group row ">
+							<label class="mylabel col-4" for="quantity">Ilość
+								dostępna : </label>
+							<div class="col-8">
+								<sf:input type="number" path="quantity" id="quantity"
+									placeholder="Ilość" class="form-control" />
+								<em class="help-block">Proszę wpisać dostępną ilość</em>
+
+							</div>
+						</div>
+
+						<div class="form-group row ">
+							<label class="mylabel col-4" for="category">Kategoria : </label>
+							<div class="col-8">
+								<sf:select class="form-control" id="categoryId" path="categoryId"
+								items="${categories}"
+								itemLabel="name"
+								itemValue="id"
+								
+								/>
+								
+
+							</div>
+						</div>
+
+
+						<div class="row justify-content-center form-group">
+							<div class="col-2">
+								<input type="submit" name="submit" id="submit" value="Wyślij"
+									class="btn btn-primary" />
+								
+								<!-- ukryte pola -->
+								<sf:hidden path="id" />
+								<sf:hidden path="code" />
+								<sf:hidden path="supplierId" />
+								<sf:hidden path="active" />
+								<sf:hidden path="purchases" />
+								<sf:hidden path="views" />
+								
+							</div>
+						</div>
+
+
+					</sf:form>
 
 				</div>
 
