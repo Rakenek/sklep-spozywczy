@@ -131,7 +131,7 @@ VALUES ('Zenon', 'Martyniuk', 'USER', true, '$2a$10$Ljm3tOKzDlTMiuXRVdRa7OAfEk2o
 
 -- adding five products
 INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
-VALUES ('PRDABC123DEFX', 'jablka', 'pola', 'kg', 2.5, 100, true, 1, 2, 0, 0 );
+VALUES ('PRDABC123DEFX', 'jablka', 'pola', 'kg', 2.5, 0, true, 1, 2, 0, 0 );
 INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDDEF123DEFX', 'gruszka', 'zielony sad', 'kg', 3.5, 100, true, 1, 2, 0, 0 );
 INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
