@@ -13,11 +13,10 @@ $(function() {
 	case 'Kontakt':
 		$('#contact').addClass('active');
 		break;
-	case 'Kontakt':
-		$('#contact').addClass('active');
+	case 'Zarządzenie Produktem':
+		$('#manageProducts').addClass('active');
 		break;
 	default:
-		$('#home').addClass('active');
 		$('#a_' + menu).addClass('sidebaractive');
 		break;
 	}

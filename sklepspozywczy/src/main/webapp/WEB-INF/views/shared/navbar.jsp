@@ -21,6 +21,10 @@
             <li id="contact">
               <a class="nav-link" href="${contextRoot}/contact">Kontakt</a>
             </li>
+              <li id="manageProducts">
+              <a class="nav-link" href="${contextRoot}/manage/products">Zarządzanie Produktami</a>
+            </li>
+            
           </ul>
         </div>
       </div>
