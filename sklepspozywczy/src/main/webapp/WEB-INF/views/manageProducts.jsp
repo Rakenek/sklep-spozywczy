@@ -30,9 +30,7 @@
 
 					<sf:form class="form-horizontal" modelAttribute="product"
 						action="${contextRoot}/manage/products" method="POST"
-						enctype="multipart/form-data"
-						
-						>
+						enctype="multipart/form-data">
 
 
 						<div class="form-group row">
@@ -41,7 +39,7 @@
 							<div class="col-8">
 								<sf:input type="text" path="name" id="name"
 									placeholder="Nazwa produktu" class="form-control" />
-								<sf:errors path="name" cssClass="help-block" element="em"/>
+								<sf:errors path="name" cssClass="help-block" element="em" />
 
 							</div>
 						</div>
@@ -52,7 +50,7 @@
 							<div class="col-8">
 								<sf:input type="text" path="brand" id="brand"
 									placeholder="Marka" class="form-control" />
-								<sf:errors path="brand" cssClass="help-block" element="em"/>
+								<sf:errors path="brand" cssClass="help-block" element="em" />
 
 							</div>
 						</div>
@@ -63,7 +61,7 @@
 							<div class="col-8">
 								<sf:input type="text" path="unit" id="unit"
 									placeholder="Jednostka" class="form-control" />
-								<sf:errors path="unit" cssClass="help-block" element="em"/>
+								<sf:errors path="unit" cssClass="help-block" element="em" />
 
 							</div>
 						</div>
@@ -74,7 +72,7 @@
 							<div class="col-8">
 								<sf:input type="number" path="unitPrice" id="unitPrice"
 									placeholder="Cena jednostkowa" class="form-control" />
-								<sf:errors path="unitPrice" cssClass="help-block" element="em"/>
+								<sf:errors path="unitPrice" cssClass="help-block" element="em" />
 
 							</div>
 						</div>
@@ -85,16 +83,17 @@
 							<div class="col-8">
 								<sf:input type="number" path="quantity" id="quantity"
 									placeholder="Ilość" class="form-control" />
-								<sf:errors path="quantity" cssClass="help-block" element="em"/>
+								<sf:errors path="quantity" cssClass="help-block" element="em" />
 
 							</div>
 						</div>
-						
-							<div class="form-group row ">
-							<label class="mylabel col-4" for="file">Fotografia produktu : </label>
-							<div class="col-8">
-								<sf:input type="file" path="file" id="file" class="form-control"/>
 
+						<div class="form-group row ">
+							<label class="mylabel col-4" for="file">Fotografia
+								produktu : </label>
+							<div class="col-8">
+								<sf:input type="file" path="file" id="file" class="form-control" />
+								<sf:errors path="file" cssClass="help-block" element="em" />
 							</div>
 						</div>
 
@@ -136,4 +135,85 @@
 		</div>
 	</div>
 
-</div>
+	<div class="row pt-5">
+		<div class="col-12">
+			<h3>Dostępne produkty</h3>
+			<hr />
+		</div>
+		<div class="col-12">
+			<div style="overflow:auto">
+
+				<table id="adminProductsTable"
+					class="table table-striped table-bordered">
+					<thead>
+						<tr>
+				<th>Id</th>
+							<th>&#160;</th>
+							<th>Nazwa</th>
+							<th>Ilość</th>
+							<th>Cena jednostkowa</th>
+							<th>Jednostka</th>
+							<th>Aktywny</th>
+							<th>Edytuj</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td>1</td>
+							<td><img class="adminDataTableImg"
+								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
+								alt="jablka soczyste" /></td>
+							<td>jablka</td>
+							<td>10</td>
+							<td>2.5</td>
+							<td>kg</td>
+							<td><label class="switch"> <input
+									type="checkbox" checked="checked" value="1" />
+									<div class="slider"></div>
+							</label></td>
+							<td><a href="${contextRoot}/manage/4/product"
+								class="btn btn-warning">Edytuj </a></td>
+						</tr>
+						
+						<tr>
+							<td>1</td>
+							<td><img class="adminDataTableImg"
+								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
+								alt="jablka soczyste" /></td>
+							<td>jablka</td>
+							<td>10</td>
+							<td>2.5</td>
+							<td>kg</td>
+							<td><label class="switch"> <input
+									type="checkbox" value="1" />
+									<div class="slider"></div>
+							</label></td>
+							<td><a href="${contextRoot}/manage/4/product"
+								class="btn btn-warning">Edytuj </a></td>
+						</tr>
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Nazwa</th>
+							<th>Ilość</th>
+							<th>Cena jednostkowa</th>
+							<th>Jednostka</th>
+							<th>Aktywny</th>
+							<th>Edytuj</th>
+						</tr>
+					</tfoot>
+
+				</table>
+
+
+			</div>
+		</div>
+
+
+
+
+	</div>

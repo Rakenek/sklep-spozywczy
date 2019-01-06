@@ -118,7 +118,40 @@ $(function() {
 			$alert.fadeOut('slow');
 		}, 3000)
 	}
+	
+	//bootbox
+	$('.switch input[type="checkbox"]').on('change',function()
+	{
+		var checkbox=$(this);
+		var checked=checkbox.prop('checked');
+		var dMsg=(checked)?'Czy chcesz aktywować produkt?':'Chcesz dezaktywować produkt?';
+		var value=checkbox.prop('value');
+		
+		bootbox.confirm({
+			size:'medium',
+			title:'',
+			message:dMsg,
+			callback:function(confirmed){
+				if(confirmed){
+					
+					console.log(value);
+					bootbox.alert({
+						size:'medium',
+						title:'',
+						message: 'Wprowadzisz operacje na produkcie nr: '+value
+					})
+					
+				}else{
+					checkbox.prop('checked',!checked)
+				}
+			}
+		})
+		
+		
+	});
 
-}
-
-);
+	
+	
+	
+	
+});
