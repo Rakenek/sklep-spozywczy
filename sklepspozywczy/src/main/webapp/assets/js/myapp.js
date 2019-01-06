@@ -242,13 +242,21 @@ $(function() {
 													if (confirmed) {
 
 														console.log(value);
-														bootbox
-																.alert({
-																	size : 'medium',
-																	title : '',
-																	message : 'Wprowadzisz operacje na produkcie nr: '
-																			+ value
-																})
+														
+														var activationUrl=window.contextRoot+'/manage/product/'+value+'/activation';
+														
+														$.post(activationUrl,function(data){
+															
+															bootbox
+															.alert({
+																size : 'medium',
+																title : '',
+																message : data
+															});
+															
+														});
+														
+														
 
 													} else {
 														checkbox.prop('checked', !checked)
