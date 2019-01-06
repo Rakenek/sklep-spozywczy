@@ -67,7 +67,17 @@ public class ManagmentController {
 	@RequestMapping(value="/products", method=RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model, HttpServletRequest request) {
 		
-		new ProductValidator().validate(mProduct,results);
+		if(mProduct.getId()==0)
+		{
+			new ProductValidator().validate(mProduct,results);
+		}
+		else
+		{
+			if(!mProduct.getFile().getOriginalFilename().equals(""))
+			{
+				new ProductValidator().validate(mProduct, results);
+			}
+		}
 		
 		if(results.hasErrors())
 		{
@@ -79,7 +89,13 @@ public class ManagmentController {
 		
 		logger.info(mProduct.toString());
 		
-		productDAO.add(mProduct);
+		if(mProduct.getId()==0) {
+			productDAO.add(mProduct);
+		}
+		else {
+			productDAO.update(mProduct);
+		}
+		
 		
 		if(!mProduct.getFile().getOriginalFilename().equals("")) {
 			FileUploadUtility.uploadFile(request,mProduct.getFile(),mProduct.getCode());
@@ -98,12 +114,26 @@ public class ManagmentController {
 		product.setActive(!product.isActive());
 		productDAO.update(product);
 		
-		return (isActive)?"Udalo ci siê deaktywowac produkt "+product.getName()+" o id = "+product.getId():"Udalo ci sie aktywowac produkt "+product.getName()+" o id = "+product.getId();
+		return (isActive)?"Udalo ci sie deaktywowac produkt "+product.getName()+" o id = "+product.getId():"Udalo ci sie aktywowac produkt "+product.getName()+" o id = "+product.getId();
 	}
 	
 	@ModelAttribute("categories")
 	public List<Category>getCategories(){
 		return categoryDAO.list();
+	}
+	
+	
+	@RequestMapping(value="/{id}/product",method=RequestMethod.GET)
+	public ModelAndView showEditProduct(@PathVariable int id)
+	{
+		ModelAndView mv=new ModelAndView("page");
+		mv.addObject("userClickManageProducts",true);
+		mv.addObject("title","Zarz¹dzenie Produktem");
+		
+		Product nProduct=productDAO.get(id);
+		mv.addObject("product",nProduct);
+		
+		return mv;
 	}
 	
 }

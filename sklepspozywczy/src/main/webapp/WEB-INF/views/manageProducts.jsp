@@ -23,7 +23,7 @@
 		<div class="col-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h4>Zarządzanie produktami</h4>
+					<h4>Dodawanie/Edytowanie produktu</h4>
 				</div>
 
 				<div class="panel-body">
@@ -137,7 +137,7 @@
 
 	<div class="row pt-5">
 		<div class="col-12">
-			<h3>Dostępne produkty</h3>
+			<h3>Lista dostępnych produktów</h3>
 			<hr />
 		</div>
 		<div class="col-12">
