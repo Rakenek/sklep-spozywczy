@@ -141,67 +141,32 @@
 			<hr />
 		</div>
 		<div class="col-12">
-			<div style="overflow:auto">
+			<div style="overflow: auto">
 
-				<table id="adminProductsTable"
-					class="table table-striped table-bordered">
+				<table id="adminProductsTable" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-				<th>Id</th>
+							<th>Id</th>
 							<th>&#160;</th>
 							<th>Nazwa</th>
+							<th>Marka</th>
+							<th>Cena jedn.</th>
+							<th>Jedn.</th>
 							<th>Ilość</th>
-							<th>Cena jednostkowa</th>
-							<th>Jednostka</th>
 							<th>Aktywny</th>
 							<th>Edytuj</th>
 						</tr>
 					</thead>
-					<tbody>
-					
-						<tr>
-							<td>1</td>
-							<td><img class="adminDataTableImg"
-								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
-								alt="jablka soczyste" /></td>
-							<td>jablka</td>
-							<td>10</td>
-							<td>2.5</td>
-							<td>kg</td>
-							<td><label class="switch"> <input
-									type="checkbox" checked="checked" value="1" />
-									<div class="slider"></div>
-							</label></td>
-							<td><a href="${contextRoot}/manage/4/product"
-								class="btn btn-warning">Edytuj </a></td>
-						</tr>
-						
-						<tr>
-							<td>1</td>
-							<td><img class="adminDataTableImg"
-								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
-								alt="jablka soczyste" /></td>
-							<td>jablka</td>
-							<td>10</td>
-							<td>2.5</td>
-							<td>kg</td>
-							<td><label class="switch"> <input
-									type="checkbox" value="1" />
-									<div class="slider"></div>
-							</label></td>
-							<td><a href="${contextRoot}/manage/4/product"
-								class="btn btn-warning">Edytuj </a></td>
-						</tr>
-						
-					</tbody>
+
 					<tfoot>
 						<tr>
 							<th>Id</th>
 							<th>&#160;</th>
 							<th>Nazwa</th>
+							<th>Marka</th>
+							<th>Cena jedn.</th>
+							<th>Jedn.</th>
 							<th>Ilość</th>
-							<th>Cena jednostkowa</th>
-							<th>Jednostka</th>
 							<th>Aktywny</th>
 							<th>Edytuj</th>
 						</tr>

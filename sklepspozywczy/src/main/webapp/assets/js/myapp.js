@@ -28,6 +28,7 @@ $(function() {
 		var jsonUrl = '';
 		if (window.categoryId == '') {
 			jsonUrl = window.contextRoot + '/json/data/all/products';
+			console.log(jsonUrl);
 		} else {
 			jsonUrl = window.contextRoot + '/json/data/category/'
 					+ window.categoryId + '/products';
@@ -45,6 +46,7 @@ $(function() {
 					columns : [
 							{
 								data : 'code',
+								bSortable:false,
 								mRender : function(data, type, row) {
 									return '<img src="' + window.contextRoot
 											+ '/resources/images/' + data
@@ -118,40 +120,152 @@ $(function() {
 			$alert.fadeOut('slow');
 		}, 3000)
 	}
-	
-	//bootbox
-	$('.switch input[type="checkbox"]').on('change',function()
-	{
-		var checkbox=$(this);
-		var checked=checkbox.prop('checked');
-		var dMsg=(checked)?'Czy chcesz aktywować produkt?':'Chcesz dezaktywować produkt?';
-		var value=checkbox.prop('value');
-		
-		bootbox.confirm({
-			size:'medium',
-			title:'',
-			message:dMsg,
-			callback:function(confirmed){
-				if(confirmed){
-					
-					console.log(value);
-					bootbox.alert({
-						size:'medium',
-						title:'',
-						message: 'Wprowadzisz operacje na produkcie nr: '+value
-					})
-					
-				}else{
-					checkbox.prop('checked',!checked)
-				}
-			}
-		})
-		
-		
-	});
+
+	// bootbox
+
+	// tabela admina
+	var $adminProductsTable = $('#adminProductsTable');
+
+	if ($adminProductsTable.length) {
+
+		var jsonUrl = window.contextRoot+'/json/data/admin/all/products';
+		console.log(jsonUrl);
+		console.log(window.contextRoot);
+
+		$adminProductsTable.DataTable({
+					lengthMenu : [ [ 10, 15, 20, -1 ],
+							[ '10', '15', '20', 'Wszystkie' ] ],
+					pageLength : 15,
+					ajax : {
+						url : jsonUrl,
+						dataSrc : ''
+					},
+					columns : [
+
+							{
+								data : 'id'
+							},
+
+							{
+								data : 'code',
+								bSortable:false,
+								mRender : function(data, type, row) {
+									return '<img src="'
+											+ window.contextRoot
+											+ '/resources/images/'
+											+ data
+											+ '.jpg" class="adminDataTableImg"/>';
+								}
+							},
+							{
+								data : 'name'
+
+							},
+							{
+								data : 'brand'
+
+							},
+							{
+								data : 'unitPrice',
+								mRender : function(data, type, row) {
+									return data + ' zł'
+								}
+
+							},
+							{
+								data : 'unit'
+
+							},
+							{
+								data : 'quantity',
+								mRender : function(data, type, row) {
+									if (data < 1) {
+										return '<span style="color:red">Brak w sklepie!</span>';
+									}
+									return data;
+								}
+
+							},
+							{
+								data : 'active',
+								bSortable:false,
+								mRender: function(data,type,row){
+									
+									var str='';
+							str+='<label class="switch">';
+							if(data){
+								
+								str+='<input type="checkbox" checked="checked" value="'+row.id+'" />';	
+								
+							}else{
+								str+='<input type="checkbox" value="'+row.id+'" />';
+							}	
+								str+='<div class="slider"></div></label>';
+							
+										return str;
+									
+								}
+								
+							},
+							
+							{
+								data:'id',
+									bSortable:false,
+									mRender:function(data,type,row)
+									{
+										var str='';
+										str+='<a href="${contextRoot}/manage/'+data+'/product" class="btn btn-warning">Edytuj </a>';
+										return str;
+									}
+							}
+
+					],
+					initComplete: function(){
+						var api=this.api();
+						api.$('.switch input[type="checkbox"]')
+						.on(
+								'change',
+								function() {
+									bootbox.setLocale("pl");
+									var checkbox = $(this);
+									var checked = checkbox.prop('checked');
+									var dMsg = (checked) ? 'Czy chcesz aktywować produkt?'
+											: 'Chcesz dezaktywować produkt?';
+									var value = checkbox.prop('value');
+
+									bootbox
+											.confirm({
+												size : 'medium',
+												title : '',
+												message : dMsg,
+												callback : function(confirmed) {
+													if (confirmed) {
+
+														console.log(value);
+														bootbox
+																.alert({
+																	size : 'medium',
+																	title : '',
+																	message : 'Wprowadzisz operacje na produkcie nr: '
+																			+ value
+																})
+
+													} else {
+														checkbox.prop('checked', !checked)
+													}
+												}
+											})
+
+								});
+
+						
+					}
+				});
+	}
 
 	
+
+
 	
-	
-	
+
 });
