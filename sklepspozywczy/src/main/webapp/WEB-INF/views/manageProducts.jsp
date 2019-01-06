@@ -3,6 +3,23 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
 	<div class="row justify-content-center">
+
+		<c:if test="${not empty message}">
+
+			<div class="col-12">
+
+				<div class="alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+
+					${message}
+
+				</div>
+
+			</div>
+
+
+		</c:if>
+
 		<div class="col-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -11,7 +28,8 @@
 
 				<div class="panel-body">
 
-					<sf:form class="form-horizontal" modelAttribute="product">
+					<sf:form class="form-horizontal" modelAttribute="product"
+						action="${contextRoot}/manage/products" method="POST">
 
 
 						<div class="form-group row">
@@ -20,7 +38,7 @@
 							<div class="col-8">
 								<sf:input type="text" path="name" id="name"
 									placeholder="Nazwa produktu" class="form-control" />
-								<em class="help-block">Proszę wpisać nazwę produktu</em>
+								<sf:errors path="name" cssClass="help-block" element="em"/>
 
 							</div>
 						</div>
@@ -31,7 +49,7 @@
 							<div class="col-8">
 								<sf:input type="text" path="brand" id="brand"
 									placeholder="Marka" class="form-control" />
-								<em class="help-block">Proszę wpisać markę produktu</em>
+								<sf:errors path="brand" cssClass="help-block" element="em"/>
 
 							</div>
 						</div>
@@ -42,7 +60,7 @@
 							<div class="col-8">
 								<sf:input type="text" path="unit" id="unit"
 									placeholder="Jednostka" class="form-control" />
-								<em class="help-block">Proszę wpisać jednostkę</em>
+								<sf:errors path="unit" cssClass="help-block" element="em"/>
 
 							</div>
 						</div>
@@ -53,7 +71,7 @@
 							<div class="col-8">
 								<sf:input type="number" path="unitPrice" id="unitPrice"
 									placeholder="Cena jednostkowa" class="form-control" />
-								<em class="help-block">Proszę wpisać cene jednostkową</em>
+								<sf:errors path="unitPrice" cssClass="help-block" element="em"/>
 
 							</div>
 						</div>
@@ -64,7 +82,7 @@
 							<div class="col-8">
 								<sf:input type="number" path="quantity" id="quantity"
 									placeholder="Ilość" class="form-control" />
-								<em class="help-block">Proszę wpisać dostępną ilość</em>
+								<sf:errors path="quantity" cssClass="help-block" element="em"/>
 
 							</div>
 						</div>
@@ -72,13 +90,10 @@
 						<div class="form-group row ">
 							<label class="mylabel col-4" for="category">Kategoria : </label>
 							<div class="col-8">
-								<sf:select class="form-control" id="categoryId" path="categoryId"
-								items="${categories}"
-								itemLabel="name"
-								itemValue="id"
-								
-								/>
-								
+								<sf:select class="form-control" id="categoryId"
+									path="categoryId" items="${categories}" itemLabel="name"
+									itemValue="id" />
+
 
 							</div>
 						</div>
@@ -88,7 +103,7 @@
 							<div class="col-2">
 								<input type="submit" name="submit" id="submit" value="Wyślij"
 									class="btn btn-primary" />
-								
+
 								<!-- ukryte pola -->
 								<sf:hidden path="id" />
 								<sf:hidden path="code" />
@@ -96,7 +111,7 @@
 								<sf:hidden path="active" />
 								<sf:hidden path="purchases" />
 								<sf:hidden path="views" />
-								
+
 							</div>
 						</div>
 

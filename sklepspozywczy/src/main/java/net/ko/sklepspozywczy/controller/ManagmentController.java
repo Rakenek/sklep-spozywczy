@@ -2,14 +2,22 @@ package net.ko.sklepspozywczy.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.ko.sklepspozywczybackend.dao.CategoryDAO;
+import net.ko.sklepspozywczybackend.dao.ProductDAO;
 import net.ko.sklepspozywczybackend.dto.Category;
 import net.ko.sklepspozywczybackend.dto.Product;
 
@@ -19,11 +27,25 @@ public class ManagmentController {
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
+	
+	@Autowired
+	private ProductDAO productDAO;
+	
+	private static final Logger logger=LoggerFactory.getLogger(ManagmentController.class);
 
 	@RequestMapping(value="/products", method=RequestMethod.GET)
-	public ModelAndView showManageProducts()
+	public ModelAndView showManageProducts(@RequestParam(name="operation", required=false) String operation)
 	{
 		ModelAndView mv=new ModelAndView("page");
+		
+		if(operation!=null)
+		{
+			if(operation.equals("product")) {
+				mv.addObject("message","Produkt dodany poprawnie!");
+			}
+		}
+		
+		
 		mv.addObject("userClickManageProducts",true);
 		mv.addObject("title","Zarz¹dzenie Produktem");
 		
@@ -35,6 +57,25 @@ public class ManagmentController {
 		mv.addObject("product",nProduct);
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="/products", method=RequestMethod.POST)
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model) {
+		
+		
+		if(results.hasErrors())
+		{
+			model.addAttribute("userClickManageProducts",true);
+			model.addAttribute("title","Zarz¹dzenie Produktem");
+			model.addAttribute("message","Nie uda³o siê dodaæ produktu, uzupe³nij prawid³owo dane");
+			return "page";
+		}
+		
+		logger.info(mProduct.toString());
+		
+		productDAO.add(mProduct);
+		
+		return "redirect:/manage/products?operation=product";
 	}
 	
 	@ModelAttribute("categories")

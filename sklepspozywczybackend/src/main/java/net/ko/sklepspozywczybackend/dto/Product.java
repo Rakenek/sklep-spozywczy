@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,10 +20,15 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String code;
+	
+	@NotBlank(message="Proszę wpisać nazwę produktu!")
 	private String name;
+	@NotBlank(message="Proszę wpisać nazwę marki!")
 	private String brand;
+	@NotBlank(message="Proszę wpisać jednostkę produktu!")
 	private String unit;
 	@Column(name="unit_price")
+	@Min(value=1, message="Proszę podać cene jednostkową większą od 0")
 	private double unitPrice;
 	private int quantity;
 	@Column(name="is_active")
@@ -183,6 +191,14 @@ public class Product {
 
 	public void setViews(int views) {
 		this.views = views;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", unit=" + unit
+				+ ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active + ", categoryId="
+				+ categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views=" + views + "]";
 	}
 	
 	
