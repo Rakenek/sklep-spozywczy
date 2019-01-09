@@ -29,7 +29,7 @@ public class UserTestCase {
 		userDAO=(UserDAO) context.getBean("userDAO");
 	}
 	
-	@Test
+/*	@Test
 	public void testAdd()
 	{
 		user=new User();
@@ -72,14 +72,47 @@ public class UserTestCase {
 			
 			address.setUserId(user.getId());
 			assertEquals("nie udalo sie dodac adresu dostawy",true,userDAO.addAddress(address));
-		}
+		}	
+	}*/
+	
+/*	@Test
+	public void testAdd()
+	{
+		user=new User();
+		user.setFirstName("Sławomir");
+		user.setLastName("Złoty");
+		user.setEmail("so@gmail.com");
+		user.setContactNumber("823940923");
+		user.setRole("USER");
+		user.setPassword("user");
+		
+		if(user.getRole().equals("USER"))
+		{
+			cart= new Cart();
+			cart.setUser(user);
+			
+			user.setCart(cart);		
+		}	
+		
+		assertEquals("nie udalo sie stworzyc uzytkownika!",true,userDAO.addUser(user));
+		
+
 		
 		
+	}*/
+	
+	@Test
+	public void testUpdateCart() {
+		user=userDAO.getByEmail("so@gmail.com");
 		
+		cart=user.getCart();
+		cart.setGrandTotal(700.00);
+		cart.setCartLines(2);
 		
-		
+		assertEquals("nie udalo sie zaktualizowac koszyka", true, userDAO.updateCart(cart));
 		
 	}
+	
 	
 
 }
