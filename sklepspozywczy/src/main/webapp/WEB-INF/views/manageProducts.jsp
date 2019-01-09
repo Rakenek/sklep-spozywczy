@@ -104,6 +104,15 @@
 									path="categoryId" items="${categories}" itemLabel="name"
 									itemValue="id" />
 
+								<c:if test="${product.id==0}">
+									<br />
+									<div class="text-right">
+										<button type="button" data-toggle="modal"
+											data-target=#myCategoryModal " class="btn btn-warning btn-sm">Dodaj
+											kategorie</button>
+									</div>
+								</c:if>
+
 
 							</div>
 						</div>
@@ -143,7 +152,8 @@
 		<div class="col-12">
 			<div style="overflow: auto">
 
-				<table id="adminProductsTable" class="table table-striped table-bordered">
+				<table id="adminProductsTable"
+					class="table table-striped table-bordered">
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -178,7 +188,61 @@
 			</div>
 		</div>
 
+		<div class="modal fade" id="myCategoryModal" role="dialog"
+			tabindex="-1">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Dodaj nową kategorie</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span>&times;</span>
+						</button>
+
+					</div>
+					<div class="modal-body">
+
+						<!-- Formularz kategorii -->
+						<sf:form id="categoryForm" modelAttribute="category"
+							action="${contextRoot}/manage/category" method="POST"
+							class="form-horizontal">
+
+							<div class="form-group">
+								<label for="category_name" class="control-label col-4">
+									Nazwa kategorii</label>
+								<div class="col-8">
+									<sf:input type="text" path="name" id="category_name"
+										class="form-control" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="category_description" class="control-label col-4">
+									Opis kategorii </label>
+								<div class="col-8">
+									<sf:textarea cols="" rows="5" type="text" path="description"
+										id="category_description" class="form-control" />
+								</div>
+							</div>
+
+							<div class="row justify-content-center form-group">
+								<div class="col-2">
+									<input type="submit" value="Dodaj kategorie"
+										class="btn btn-primary"/>
+
+								</div>
+
+							</div>
+					</div>
+
+					</sf:form>
 
 
+
+				</div>
+			</div>
+		</div>
 
 	</div>
+
+
+</div>

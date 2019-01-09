@@ -46,7 +46,7 @@ $(function() {
 					columns : [
 							{
 								data : 'code',
-								bSortable:false,
+								bSortable : false,
 								mRender : function(data, type, row) {
 									return '<img src="' + window.contextRoot
 											+ '/resources/images/' + data
@@ -128,11 +128,12 @@ $(function() {
 
 	if ($adminProductsTable.length) {
 
-		var jsonUrl = window.contextRoot+'/json/data/admin/all/products';
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
 		console.log(jsonUrl);
 		console.log(window.contextRoot);
 
-		$adminProductsTable.DataTable({
+		$adminProductsTable
+				.DataTable({
 					lengthMenu : [ [ 10, 15, 20, -1 ],
 							[ '10', '15', '20', 'Wszystkie' ] ],
 					pageLength : 15,
@@ -148,7 +149,7 @@ $(function() {
 
 							{
 								data : 'code',
-								bSortable:false,
+								bSortable : false,
 								mRender : function(data, type, row) {
 									return '<img src="'
 											+ window.contextRoot
@@ -188,92 +189,145 @@ $(function() {
 							},
 							{
 								data : 'active',
-								bSortable:false,
-								mRender: function(data,type,row){
-									
-									var str='';
-							str+='<label class="switch">';
-							if(data){
-								
-								str+='<input type="checkbox" checked="checked" value="'+row.id+'" />';	
-								
-							}else{
-								str+='<input type="checkbox" value="'+row.id+'" />';
-							}	
-								str+='<div class="slider"></div></label>';
-							
-										return str;
-									
-								}
-								
-							},
-							
-							{
-								data:'id',
-									bSortable:false,
-									mRender:function(data,type,row)
-									{
-										var str='';
-										str+='<a href="'+window.contextRoot+'/manage/'+data+'/product" class="btn btn-warning">Edytuj </a>';
-										return str;
+								bSortable : false,
+								mRender : function(data, type, row) {
+
+									var str = '';
+									str += '<label class="switch">';
+									if (data) {
+
+										str += '<input type="checkbox" checked="checked" value="'
+												+ row.id + '" />';
+
+									} else {
+										str += '<input type="checkbox" value="'
+												+ row.id + '" />';
 									}
+									str += '<div class="slider"></div></label>';
+
+									return str;
+
+								}
+
+							},
+
+							{
+								data : 'id',
+								bSortable : false,
+								mRender : function(data, type, row) {
+									var str = '';
+									str += '<a href="'
+											+ window.contextRoot
+											+ '/manage/'
+											+ data
+											+ '/product" class="btn btn-warning">Edytuj </a>';
+									return str;
+								}
 							}
 
 					],
-					initComplete: function(){
-						var api=this.api();
-						api.$('.switch input[type="checkbox"]')
-						.on(
-								'change',
-								function() {
-									bootbox.setLocale("pl");
-									var checkbox = $(this);
-									var checked = checkbox.prop('checked');
-									var dMsg = (checked) ? 'Czy chcesz aktywować produkt?'
-											: 'Chcesz dezaktywować produkt?';
-									var value = checkbox.prop('value');
+					initComplete : function() {
+						var api = this.api();
+						api
+								.$('.switch input[type="checkbox"]')
+								.on(
+										'change',
+										function() {
+											bootbox.setLocale("pl");
+											var checkbox = $(this);
+											var checked = checkbox
+													.prop('checked');
+											var dMsg = (checked) ? 'Czy chcesz aktywować produkt?'
+													: 'Chcesz dezaktywować produkt?';
+											var value = checkbox.prop('value');
 
-									bootbox
-											.confirm({
-												size : 'medium',
-												title : '',
-												message : dMsg,
-												callback : function(confirmed) {
-													if (confirmed) {
+											bootbox
+													.confirm({
+														size : 'medium',
+														title : '',
+														message : dMsg,
+														callback : function(
+																confirmed) {
+															if (confirmed) {
 
-														console.log(value);
-														
-														var activationUrl=window.contextRoot+'/manage/product/'+value+'/activation';
-														
-														$.post(activationUrl,function(data){
-															
-															bootbox
-															.alert({
-																size : 'medium',
-																title : '',
-																message : data
-															});
-															
-														});
-														
-														
+																console
+																		.log(value);
 
-													} else {
-														checkbox.prop('checked', !checked)
-													}
-												}
-											})
+																var activationUrl = window.contextRoot
+																		+ '/manage/product/'
+																		+ value
+																		+ '/activation';
 
-								});
+																$
+																		.post(
+																				activationUrl,
+																				function(
+																						data) {
 
-						
+																					bootbox
+																							.alert({
+																								size : 'medium',
+																								title : '',
+																								message : data
+																							});
+
+																				});
+
+															} else {
+																checkbox
+																		.prop(
+																				'checked',
+																				!checked)
+															}
+														}
+													})
+
+										});
+
 					}
 				});
 	}
 
-	
+	// sprawdzenie kategorii przed dodaniem
 
+	var $categoryForm = $('#categoryForm');
 
-	
+	if ($categoryForm.length) {
+		$categoryForm
+				.validate({
+					rules : {
+						name : {
+							required : true,
+							minlength : 2
+
+						},
+
+						description : {
+							required : true
+						}
+
+					},
+
+					messages : {
+						name : {
+							required : 'Proszę dodać nazwę kategorii!',
+							minlength : 'Kategoria powinna zawierać więcej niż 2 znaki'
+						},
+
+						description : {
+								required : 'Proszę dodać opis kategorii!',
+						}
+					},
+						errorElement:'em',
+							errorPlacement:function(error,element)
+							{
+								error.addClass('help-block');
+								
+								error.insertAfter(element);
+							}
+
+					
+				});
+	}
 
 });
