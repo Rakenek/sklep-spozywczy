@@ -69,6 +69,7 @@ body {
 	background-color:#EBEBEB;
 	border-style:solid;
 	border-width:5px;
+
 }
 
 .mylabel
@@ -77,6 +78,12 @@ body {
 	font-weight:600;
 	text-align:right;
 }
+
+.mylabel2
+{
+	color:#4E5D6C;
+}
+
 
 .adminDataTableImg
 {
