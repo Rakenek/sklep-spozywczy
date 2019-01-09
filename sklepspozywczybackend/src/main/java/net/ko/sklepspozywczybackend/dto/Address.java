@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Address {
@@ -12,8 +13,10 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@Column(name="user_id")
-	private int userId;
+	
+	@ManyToOne
+	private User user;
+	
 	@Column(name="address_line_one")
 	private String adressLineOne;
 	@Column(name="address_line_two")
@@ -28,18 +31,19 @@ public class Address {
 	
 	
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+
 	public String getAdressLineOne() {
 		return adressLineOne;
 	}
@@ -88,12 +92,16 @@ public class Address {
 	public void setBilling(boolean billing) {
 		this.billing = billing;
 	}
+	
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", userId=" + userId + ", adressLineOne=" + adressLineOne + ", adressLineTwo="
+		return "Address [id=" + id + ", user=" + user + ", adressLineOne=" + adressLineOne + ", adressLineTwo="
 				+ adressLineTwo + ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode="
 				+ postalCode + ", shipping=" + shipping + ", billing=" + billing + "]";
 	}
+
+	
+
 	
 
 }

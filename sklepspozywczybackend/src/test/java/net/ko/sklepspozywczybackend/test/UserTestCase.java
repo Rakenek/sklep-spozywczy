@@ -101,7 +101,7 @@ public class UserTestCase {
 		
 	}*/
 	
-	@Test
+/*	@Test
 	public void testUpdateCart() {
 		user=userDAO.getByEmail("so@gmail.com");
 		
@@ -112,7 +112,77 @@ public class UserTestCase {
 		assertEquals("nie udalo sie zaktualizowac koszyka", true, userDAO.updateCart(cart));
 		
 	}
+	*/
 	
 	
+/*	@Test
+	public void testAddAddress()
+	{
+		user=new User();
+		user.setFirstName("Sławomir");
+		user.setLastName("Złoty");
+		user.setEmail("so@gmail.com");
+		user.setContactNumber("823940923");
+		user.setRole("USER");
+		user.setPassword("uzytkownik");
+		
+		assertEquals("nie udalo sie stworzyc uzytkownika!",true,userDAO.addUser(user));
+		
+		address=new Address();
+		address.setAdressLineOne("Daleszyce");
+		address.setAdressLineOne("Brzechów 62");
+		address.setCity("Kielce");
+		address.setState("Świętokrzyskie");
+		address.setCountry("Polska");
+		address.setPostalCode("26-021");
+		address.setBilling(true);
+		
+		address.setUser(user);
+		assertEquals("Nie udalo sie dodac adresu", true, userDAO.addAddress(address));
+		
+		address=new Address();
+		address.setAdressLineOne("Daleszyce");
+		address.setAdressLineOne("Brzechów 63");
+		address.setCity("Kielce");
+		address.setState("Świętokrzyskie");
+		address.setCountry("Polska");
+		address.setPostalCode("26-021");
+		address.setShipping(true);
+		
+		address.setUser(user);
+		assertEquals("Nie udalo sie dodac adresu dostawy", true, userDAO.addAddress(address));
+		
+	}*/
+	
+/*	@Test
+	public void testAddAddress() {
+		
+		user=userDAO.getByEmail("so@gmail.com");
+		
+		address=new Address();
+		address.setAdressLineOne("Daleszyce");
+		address.setAdressLineOne("Brzechów 64");
+		address.setCity("Kielce");
+		address.setState("Świętokrzyskie");
+		address.setCountry("Polska");
+		address.setPostalCode("26-021");
+		address.setShipping(true);
+		
+		address.setUser(user);
+		assertEquals("Nie udalo sie dodac adresu dostawy", true, userDAO.addAddress(address));
+		
+	}
+	*/
 
+		@Test
+	public void testGetAddress() {
+		
+		user=userDAO.getByEmail("so@gmail.com");
+		
+		assertEquals("Nie udalo sie pobrac listy adresów", 2, userDAO.listShippingAddresses(user).size());
+		
+		assertEquals("Nie udalo sie pobrac listy adresów", "Kielce", userDAO.getBillingAddress(user).getCity());
+		
+	}
+	
 }
