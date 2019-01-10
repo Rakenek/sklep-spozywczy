@@ -27,8 +27,30 @@
 					<li id="register"><a class="nav-link"
 						href="${contextRoot}/register">Zarejestruj</a></li>
 
-					<li id="login"><a class="nav-link"
-						href="${contextRoot}/login">Zaloguj</a></li>
+					<li id="login"><a class="nav-link" href="${contextRoot}/login">Zaloguj</a></li>
+
+
+
+
+					<li class="dropdown"><a href="javascript:void(0)"
+						class="btn btn-default dropdown-toggle" id="dropdownMenu1"
+						data-toggle="dropdown"> ${userModel.fullName} <span class="caret"></span>
+					</a>
+					
+					
+						<ul class="dropdown-menu">
+							<li class="dropdown-item">
+								<a href="${contextRoot}/cart">koszyk</a>
+								<span class="badge badge-primary">${userModel.cart.cartLines}</span>${userModel.cart.grandTotal} zł
+							
+							</li>
+							<li class="dropdown-divider" role="separator"></li>
+							<li class="dropdown-item">
+								<a href="${contextRoot}/logout">Wyloguj</a>
+							</li>
+							
+						</ul>
+					</li>
 
 				</ul>
 
