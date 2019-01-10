@@ -50,6 +50,8 @@
 				</c:otherwise>
 			</c:choose>
 			
+			<security:authorize access="hasAuthority('USER')">
+			
 			<c:choose>
 				<c:when test="${product.quantity<1 }">
 					<h6>
@@ -60,6 +62,16 @@
 						<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success"><i class="icon-cart-plus"></i>Dodaj do koszyka</a>
 				</c:otherwise>
 			</c:choose>
+			
+			</security:authorize>
+			
+			
+			<security:authorize access="hasAuthority('ADMIN')">
+			
+			<a href="${contextRoot}/manage/${product.id}/product" class="btn btn-warning"><i class="icon-pencil"></i>Edytuj</a>
+			
+			</security:authorize>
+			
 
 		 <a href="${contextRoot}/show/all/products" class="btn btn-primary">Cofnij</a>
 		 

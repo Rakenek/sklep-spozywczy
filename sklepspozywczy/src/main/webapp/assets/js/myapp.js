@@ -20,20 +20,18 @@ $(function() {
 		$('#a_' + menu).addClass('sidebaractive');
 		break;
 	}
-	//csrf token
-	var token=$('meta[name="_csrf"]').attr('content')
-	var header=$('meta[name="_csrf"]').attr('content')
-	
-	if(token.length>0&&header.length>0)
+	// csrf token
+	var token = $('meta[name="_csrf"]').attr('content')
+	var header = $('meta[name="_csrf"]').attr('content')
+
+	if (token.length > 0 && header.length > 0) {
+		$(document.ajaxSend(function(e, xhr, options)
+
 		{
-			$(document.ajaxSend(function(e,xhr,options)
-					
-			{
-				xhr.setRequestHeader(header,token);
-			}))
-		}
-	
-	
+			xhr.setRequestHeader(header, token);
+		}))
+	}
+
 	// tabela skrypt
 	var $table = $('#productListTable');
 
@@ -108,14 +106,33 @@ $(function() {
 											+ '/product" class="btn btn-primary"><i class="icon-eye"></i></a>&#160;';
 
 									if (row.quantity < 1) {
-										str += '<a href="javascript:void" class="btn btn-success disabled"><i class="icon-cart-plus"></i></a>';
+										if (userRole == 'ADMIN') {
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/manage/'
+													+ data
+													+ '/product" class="btn btn-warning"><i class="icon-pencil"></i></a>';
+										} else {
+
+											str += '<a href="javascript:void" class="btn btn-success disabled"><i class="icon-cart-plus"></i></a>';
+										}
 
 									} else {
-										str += '<a href="'
-												+ window.contextRoot
-												+ '/cart/add/'
-												+ data
-												+ '/product" class="btn btn-success"><i class="icon-cart-plus"></i></a>';
+
+										if (userRole == 'ADMIN') {
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/manage/'
+													+ data
+													+ '/product" class="btn btn-warning"><i class="icon-pencil"></i></a>';
+										} else {
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/cart/add/'
+													+ data
+													+ '/product" class="btn btn-success"><i class="icon-cart-plus"></i></a>';
+										}
+
 									}
 
 									return str;
@@ -307,83 +324,76 @@ $(function() {
 	var $categoryForm = $('#categoryForm');
 
 	if ($categoryForm.length) {
-		$categoryForm
-				.validate({
-					rules : {
-						name : {
-							required : true,
-							minlength : 2
+		$categoryForm.validate({
+			rules : {
+				name : {
+					required : true,
+					minlength : 2
 
-						},
+				},
 
-						description : {
-							required : true
-						}
+				description : {
+					required : true
+				}
 
-					},
+			},
 
-					messages : {
-						name : {
-							required : 'Proszę dodać nazwę kategorii!',
-							minlength : 'Kategoria powinna zawierać więcej niż 2 znaki'
-						},
+			messages : {
+				name : {
+					required : 'Proszę dodać nazwę kategorii!',
+					minlength : 'Kategoria powinna zawierać więcej niż 2 znaki'
+				},
 
-						description : {
-								required : 'Proszę dodać opis kategorii!',
-						}
-					},
-						errorElement:'em',
-							errorPlacement:function(error,element)
-							{
-								error.addClass('help-block');
-								
-								error.insertAfter(element);
-							}
+				description : {
+					required : 'Proszę dodać opis kategorii!',
+				}
+			},
+			errorElement : 'em',
+			errorPlacement : function(error, element) {
+				error.addClass('help-block');
 
-					
-				});
+				error.insertAfter(element);
+			}
+
+		});
 	}
-	
-	//login
+
+	// login
 	var $loginForm = $('#loginForm');
 
 	if ($loginForm.length) {
-		$loginForm
-				.validate({
-					rules : {
-						username : {
-							required : true,
-							email : true
+		$loginForm.validate({
+			rules : {
+				username : {
+					required : true,
+					email : true
 
-						},
+				},
 
-						password : {
-							required : true
-						}
+				password : {
+					required : true
+				}
 
-					},
+			},
 
-					messages : {
-						username : {
-							required : 'Proszę wpisac login (email)',
-							email : 'Proszę podać email'
-						},
+			messages : {
+				username : {
+					required : 'Proszę wpisac login (email)',
+					email : 'Proszę podać email'
+				},
 
-						password : {
-								required : 'Proszę wpisać hasło',
-						}
-					},
-						errorElement:'em',
-							errorPlacement:function(error,element)
-							{
-								error.addClass('help-block');
-								
-								error.insertAfter(element);
-							}
+				password : {
+					required : 'Proszę wpisać hasło',
+				}
+			},
+			errorElement : 'em',
+			errorPlacement : function(error, element) {
+				error.addClass('help-block');
 
-					
-				});
+				error.insertAfter(element);
+			}
+
+		});
 	}
-
 
 });
