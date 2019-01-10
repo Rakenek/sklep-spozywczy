@@ -50,8 +50,8 @@ CREATE TABLE address (
 	state VARCHAR(20),
 	country VARCHAR(20),
 	postal_code VARCHAR(10),
-	is_billing BOOLEAN,
-	is_shipping BOOLEAN,
+	billing BOOLEAN,
+	shipping BOOLEAN,
 	CONSTRAINT fk_address_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
 	CONSTRAINT pk_address_id PRIMARY KEY (id)
 );
@@ -143,7 +143,7 @@ VALUES ('PRDABCXYZDEFX', 'chleb', 'piekarnia pod telegrafem', 'szt', 4, 100, tru
 INSERT INTO product (code, name, brand, unit, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDABCXYZDEFZ', 'mini-pizza', 'piekarnia pod telegrafem', 'szt', 3, 100, true, 3, 3, 0, 0 );
 -- adding a supplier correspondece address
-INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, is_billing, is_shipping) 
+INSERT INTO address( user_id, address_line_one, address_line_two, city, state, country, postal_code, billing, shipping) 
 VALUES (4, 'Daleszyce', 'Brzechow', '62B', 'Swietokrzyskie', 'Polska', '26-021', true, false );
 -- adding a cart for testing 
 INSERT INTO cart (user_id, grand_total, cart_lines) VALUES (4, 0, 0);

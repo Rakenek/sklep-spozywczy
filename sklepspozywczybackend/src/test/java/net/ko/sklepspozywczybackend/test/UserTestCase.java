@@ -160,8 +160,8 @@ public class UserTestCase {
 		user=userDAO.getByEmail("so@gmail.com");
 		
 		address=new Address();
-		address.setAdressLineOne("Daleszyce");
-		address.setAdressLineOne("Brzechów 64");
+		address.setAddressLineOne("Daleszyce");
+		address.setAddressLineOne("Brzechów 64");
 		address.setCity("Kielce");
 		address.setState("Świętokrzyskie");
 		address.setCountry("Polska");
@@ -171,10 +171,10 @@ public class UserTestCase {
 		address.setUser(user);
 		assertEquals("Nie udalo sie dodac adresu dostawy", true, userDAO.addAddress(address));
 		
-	}
-	*/
+	}*/
+	
 
-		@Test
+/*		@Test
 	public void testGetAddress() {
 		
 		user=userDAO.getByEmail("so@gmail.com");
@@ -183,6 +183,6 @@ public class UserTestCase {
 		
 		assertEquals("Nie udalo sie pobrac listy adresów", "Kielce", userDAO.getBillingAddress(user).getCity());
 		
-	}
+	}*/
 	
 }
