@@ -38,7 +38,7 @@ body {
 
 #productListTable
 {
-	 width:842px; 
+	 width:842px;
 }
 
 .dataTableImg{
@@ -158,10 +158,16 @@ input:checked + .slider:before {
 }
 
 
+.table-responsive{
+	overflow-x: inherit;
+}
 
 
-
-
+.homesiteimg
+{
+	height:202.38px;
+	width:252.98px;
+}
 
 
 

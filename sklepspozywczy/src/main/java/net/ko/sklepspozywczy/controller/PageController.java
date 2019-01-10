@@ -38,6 +38,7 @@ public class PageController {
 
 		// przekazywanie listy kategorii
 		mv.addObject("categories", categoryDAO.list());
+		mv.addObject("products", productDAO.list());
 
 		mv.addObject("userClickHome", true);
 		return mv;

@@ -113,8 +113,10 @@ $(function() {
 													+ data
 													+ '/product" class="btn btn-warning"><i class="icon-pencil"></i></a>';
 										} else {
-
+											
+											if (userRole == 'USER') {
 											str += '<a href="javascript:void" class="btn btn-success disabled"><i class="icon-cart-plus"></i></a>';
+											}
 										}
 
 									} else {
@@ -126,11 +128,13 @@ $(function() {
 													+ data
 													+ '/product" class="btn btn-warning"><i class="icon-pencil"></i></a>';
 										} else {
+											if (userRole == 'USER') {
 											str += '<a href="'
 													+ window.contextRoot
 													+ '/cart/add/'
 													+ data
 													+ '/product" class="btn btn-success"><i class="icon-cart-plus"></i></a>';
+											}
 										}
 
 									}
