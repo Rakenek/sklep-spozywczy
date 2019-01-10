@@ -20,6 +20,20 @@ $(function() {
 		$('#a_' + menu).addClass('sidebaractive');
 		break;
 	}
+	//csrf token
+	var token=$('meta[name="_csrf"]').attr('content')
+	var header=$('meta[name="_csrf"]').attr('content')
+	
+	if(token.length>0&&header.length>0)
+		{
+			$(document.ajaxSend(function(e,xhr,options)
+					
+			{
+				xhr.setRequestHeader(header,token);
+			}))
+		}
+	
+	
 	// tabela skrypt
 	var $table = $('#productListTable');
 

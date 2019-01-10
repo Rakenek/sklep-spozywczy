@@ -41,6 +41,16 @@
 
 	<div class="wrapper">
 		<div class="container">
+			<c:if test="${not empty message }">
+				<div class="row">
+					<div class="offset-3 col-6">
+						<div class="alert alert-danger">${message}</div>
+					</div>
+
+
+				</div>
+
+			</c:if>
 
 			<!-- Nawigacja -->
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -100,6 +110,8 @@
 									<div class="form-group">
 										<div class="offset-4 col-8">
 											<input type="submit" value="Login" class="btn btn-primary" />
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
 										</div>
 									</div>
 								</form>

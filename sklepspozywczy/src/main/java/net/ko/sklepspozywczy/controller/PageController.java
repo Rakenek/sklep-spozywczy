@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.ko.sklepspozywczy.exception.ProductNotFoundException;
@@ -24,8 +25,10 @@ public class PageController {
 
 	@Autowired
 	private ProductDAO productDAO;
+	
 
-	@RequestMapping(value = { "/home", "/index" })
+
+	@RequestMapping(value = {"/","/home", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Strona domowa");
@@ -109,9 +112,25 @@ public class PageController {
 	/* logowanie */
 
 	@RequestMapping(value = "/login")
-	public ModelAndView login() {
+	public ModelAndView login(@RequestParam(name="error",required=false) String error) {
 		ModelAndView mv = new ModelAndView("login");
+		
+		if(error!=null)
+		{
+			mv.addObject("message","Niepoprawny login i has³o");
+		}
+		
 		mv.addObject("title", "Login");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/access-denied")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("error");
+		
+		mv.addObject("title", "403 - Odmowa dostêpu");
+		mv.addObject("errorTitle", "Aha! Mamy ciê!");
+		mv.addObject("errorDescription", "Nie masz autoryzacji ¿eby przegl¹daæ t¹ strone");
 		return mv;
 	}
 
