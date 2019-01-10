@@ -36,6 +36,7 @@
 								<div class="col-8">
 									<sf:input type="text" path="addressLineOne"
 										class="form-control" placeholder="Pierwsza część adresu" />
+										<sf:errors path="addressLineOne" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 
@@ -45,6 +46,7 @@
 								<div class="col-8">
 									<sf:input type="text" path="addressLineTwo"
 										class="form-control" placeholder="Druga część adresu" />
+										<sf:errors path="addressLineTwo" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 
@@ -53,6 +55,7 @@
 								<div class="col-8">
 									<sf:input type="text" path="city" class="form-control"
 										placeholder="Miasto" />
+										<sf:errors path="city" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 
@@ -62,6 +65,7 @@
 								<div class="col-8">
 									<sf:input type="text" path="postalCode" class="form-control"
 										placeholder="XXXXXX" />
+										<sf:errors path="postalCode" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 
@@ -70,6 +74,7 @@
 								<div class="col-8">
 									<sf:input type="text" path="state" class="form-control"
 										placeholder="Województwo" />
+										<sf:errors path="state" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 
@@ -78,6 +83,7 @@
 								<div class="col-8">
 									<sf:input type="text" path="country" class="form-control"
 										placeholder="Kraj" />
+										<sf:errors path="country" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 
@@ -91,6 +97,7 @@
 									<div class="col">
 										<button type="submit" class="btn btn-primary"
 											name="_eventId_confirm">Przejdz do potwierdzenia</button>
+		
 									</div>
 
 								</div>
