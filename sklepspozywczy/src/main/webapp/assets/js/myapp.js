@@ -329,5 +329,47 @@ $(function() {
 					
 				});
 	}
+	
+	//login
+	var $loginForm = $('#loginForm');
+
+	if ($loginForm.length) {
+		$loginForm
+				.validate({
+					rules : {
+						username : {
+							required : true,
+							email : true
+
+						},
+
+						password : {
+							required : true
+						}
+
+					},
+
+					messages : {
+						username : {
+							required : 'Proszę wpisac login (email)',
+							email : 'Proszę podać email'
+						},
+
+						password : {
+								required : 'Proszę wpisać hasło',
+						}
+					},
+						errorElement:'em',
+							errorPlacement:function(error,element)
+							{
+								error.addClass('help-block');
+								
+								error.insertAfter(element);
+							}
+
+					
+				});
+	}
+
 
 });

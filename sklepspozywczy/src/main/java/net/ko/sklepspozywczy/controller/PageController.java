@@ -16,97 +16,103 @@ import net.ko.sklepspozywczybackend.dto.Product;
 
 @Controller
 public class PageController {
-	
-	private static final Logger logger=LoggerFactory.getLogger(PageController.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	@Autowired
 	private ProductDAO productDAO;
-	
-	@RequestMapping(value= {"/home","/index"})
+
+	@RequestMapping(value = { "/home", "/index" })
 	public ModelAndView index() {
-		ModelAndView mv=new ModelAndView("page");
-		mv.addObject("title","Strona domowa");
-		
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Strona domowa");
+
 		logger.info("w page controllerze index -INFO");
 		logger.debug("w page controllerze index -INFO");
-		
-		
-		//przekazywanie listy kategorii
-		mv.addObject("categories",categoryDAO.list());
-		
-		mv.addObject("userClickHome",true);
+
+		// przekazywanie listy kategorii
+		mv.addObject("categories", categoryDAO.list());
+
+		mv.addObject("userClickHome", true);
 		return mv;
 	}
-	
-	@RequestMapping(value= {"/about"})
+
+	@RequestMapping(value = { "/about" })
 	public ModelAndView about() {
-		ModelAndView mv=new ModelAndView("page");
-		mv.addObject("title","O nas");
-		mv.addObject("userClickAbout",true);
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "O nas");
+		mv.addObject("userClickAbout", true);
 		return mv;
 	}
-	
-	@RequestMapping(value= {"/contact"})
+
+	@RequestMapping(value = { "/contact" })
 	public ModelAndView contact() {
-		ModelAndView mv=new ModelAndView("page");
-		mv.addObject("title","Kontakt");
-		mv.addObject("userClickContact",true);
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Kontakt");
+		mv.addObject("userClickContact", true);
 		return mv;
 	}
-	
-	
-	@RequestMapping(value= {"/show/all/products"})
+
+	@RequestMapping(value = { "/show/all/products" })
 	public ModelAndView showAllProducts() {
-		ModelAndView mv=new ModelAndView("page");
-		mv.addObject("title","Wszystkie produkty");
-		
-		//przekazywanie listy kategorii
-		mv.addObject("categories",categoryDAO.list());
-		
-		mv.addObject("userClickAllProducts",true);
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Wszystkie produkty");
+
+		// przekazywanie listy kategorii
+		mv.addObject("categories", categoryDAO.list());
+
+		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
-	
-	@RequestMapping(value= {"/show/category/{id}/products"})
+
+	@RequestMapping(value = { "/show/category/{id}/products" })
 	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
-		ModelAndView mv=new ModelAndView("page");
-		
-		Category category=null;
-		category=categoryDAO.get(id);
-		
-		mv.addObject("title",category.getName());
-		
-		//przekazywanie listy kategorii
-		mv.addObject("categories",categoryDAO.list());
-		
-		//przekazywanie pojedynczej kategorii
-		mv.addObject("category",category);
-		
-		
-		mv.addObject("userClickCategoryProducts",true);
+		ModelAndView mv = new ModelAndView("page");
+
+		Category category = null;
+		category = categoryDAO.get(id);
+
+		mv.addObject("title", category.getName());
+
+		// przekazywanie listy kategorii
+		mv.addObject("categories", categoryDAO.list());
+
+		// przekazywanie pojedynczej kategorii
+		mv.addObject("category", category);
+
+		mv.addObject("userClickCategoryProducts", true);
 		return mv;
 	}
-	
-	@RequestMapping(value="/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable int id)throws ProductNotFoundException {
-		ModelAndView mv=new ModelAndView("page");
-		
-		Product product=productDAO.get(id);
-		
-		if(product==null)throw new ProductNotFoundException();
-		
-		product.setViews(product.getViews()+1);
+
+	@RequestMapping(value = "/show/{id}/product")
+	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException {
+		ModelAndView mv = new ModelAndView("page");
+
+		Product product = productDAO.get(id);
+
+		if (product == null)
+			throw new ProductNotFoundException();
+
+		product.setViews(product.getViews() + 1);
 		productDAO.update(product);
-		
+
 		mv.addObject("title", product.getName());
-		mv.addObject("product",product);
-		mv.addObject("userClickShowProduct",true);
-		
+		mv.addObject("product", product);
+		mv.addObject("userClickShowProduct", true);
+
 		return mv;
 	}
-	
-	
+
+	/* logowanie */
+
+	@RequestMapping(value = "/login")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("title", "Login");
+		return mv;
+	}
+
 }
